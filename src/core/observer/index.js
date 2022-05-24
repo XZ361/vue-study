@@ -167,6 +167,10 @@ export function defineReactive (
       const value = getter ? getter.call(obj) : val
       // 首次触发render，做依赖收集
       // vue2一个组件一个watcher
+      // key : dep = 1 : 1
+      // key : watcher = n : 1
+      // 所以dep : watcher = n : 1
+      // 又因为key : watcher = 1 : n
       // dep n : n watcher
       if (Dep.target) {
         dep.depend()
